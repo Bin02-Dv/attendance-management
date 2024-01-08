@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update - Staff</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <style>
+        .form{
+            width: 40%;
+        }
+        .form-section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-section .row{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bodycontainer">
+        <div class="body-content">
+            <div class="discription">
+                <h3>
+                    Update the Staff file 
+                </h3>
+            </div>
+        </div>
+        <div class="form-section">
+            <div class="form">
+                {% if messages %}
+                <div class="alert alert-danger">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form action="/update-staff/{{users.id}}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <input type="text" name="username" id="" class="form-control" value="{{users.user.username}}" placeholder="Username" readonly>
+                    </div>
+                    <div class="row">
+                        <input type="text" name="f-name" id="" class="form-control" placeholder="Full Name" value="{{users.lecturer_name}}">
+                    </div>
+                    <div class="row">
+                        <!-- <input type="text" name="course" id="" class="form-control" placeholder="Course Taking" value="{{users.course_taking}}"> -->
+                        <select name="course" id="" class="form-control">
+                            <option value="{{users.course_taking}}">{{users.course_taking}}</option>
+                            {% for course in courses %}
+                            <option value="{{course.course_title}}">{{course.course_title}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-success">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="body-content">
+            <div class="discription">
+                <h6 class="text-center">
+                    This page is for Admin to Update Student and Staffs. <a href="/admin-page" class="">Click</a> to go back home
+                </h6>
+            </div>
+        </div>
+        <div class="img">
+            <img src="../static/images/logo.jpeg" alt="image">
+        </div>
+    </div>
+</body>
+</html>

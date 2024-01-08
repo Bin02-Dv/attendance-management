@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <style>
+        .img img{
+            height: 60px;
+            width: 100px;
+            border-radius: 5px;
+        }
+        .table{
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bodycontainer">
+        <div class="first_content_header">
+            <div class="header">
+                <div class="img">
+                    <img src="../static/images/logo.jpeg" alt="image">
+                </div>
+                <div class="content">
+                    <div class="nav-bar">
+                        <a href="/admin-page">Home</a>
+                        <a href="/add-user">Register Lecturer</a>
+                        <a href="/view-user">View Lecturer</a>
+                        <a href="/add-student">Register Student</a>
+                        <a href="/view-student">View Student</a>
+                        <a href="/add-courses">Add Courses</a>
+                        <a href="/view-courses">View Courses</a>
+                        <a href="/admin-logout" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-content">
+            <div class="discription">
+                <h3>
+                    student's.. 
+                </h3>
+            </div>
+        </div>
+        <div class="table">
+            <table class="table caption-top">
+                {% if messages %}
+                <div class="alert alert-danger">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <caption>List of Student's</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Student Registraion Number</th>
+                    <th scope="col">Student Profile Image</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Student Level</th>
+                    <th scope="col">Student Email</th>
+                    <th scope="col" class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for student in students %}
+                  <tr>
+                    <td>{{student.user.username}}</td>
+                    <td><img src="{{student.profileImg.url}}" alt="" width="30"></td>
+                    <td>{{student.student_name}}</td>
+                    <td>{{student.student_level}}</td>
+                    <td>{{student.user.email}}</td>
+                    <td class="text-center">
+                        <a href="/update-student/{{ student.id_user }}" class="btn btn-primary">Edit</a>
+                        <a href="/request-for-delete-stu/{{ student.user.id }}" class="btn btn-danger">DEL</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</body>
+</html>

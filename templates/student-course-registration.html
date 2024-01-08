@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Page</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <style>
+        .img img{
+            height: 60px;
+            width: 100px;
+            border-radius: 5px;
+        }
+        .form{
+            width: 40%;
+        }
+        .form-section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-section .row{
+            margin-bottom: 20px;
+        }
+        .rows{
+            opacity: .7;
+        }
+    </style>
+</head>
+<body>
+    <div class="bodycontainer">
+        <div class="first_content_header">
+            <div class="header">
+                <div class="img">
+                    <img src="../static/images/logo.jpeg" alt="image">
+                </div>
+                <div class="content">
+                    <div class="nav-bar">
+                        <a href="/student-page">Home</a>
+                        <a href="/student-attendance-view">View My Attendance</a>
+                        <a href="/student-course-registration">Course Registration</a>
+                        <a href="/student-course-view">View courses</a>
+                        <a href="/student-logout" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-content">
+            <div class="discription">
+                <h3>
+                    add courses 
+                </h3>
+            </div>
+        </div>
+        <div class="form-section">
+            <div class="form">
+                {% if messages %}
+                <div class="alert alert-danger">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row rows">
+                        <select name="course_1" id="" class="form-control">
+                            {% if student_course.course_1 != '' %}
+                            <option value="{{student_course.course_1}}">{{student_course.course_1}}</option>
+                            {% endif %}
+                            <option name="course_1" value="">Select Course One</option>
+                            {% for course in course_list %}
+                            <option name="course_1" value="{{ course.course_title }}">{{ course.course_title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row rows">
+                        <select name="course_2" id="" class="form-control">
+                            {% if student_course.course_2 != '' %}
+                            <option value="{{student_course.course_2}}">{{student_course.course_2}}</option>
+                            {% endif %}
+                            <option name="course_2" value="">Select Course Two</option>
+                            {% for course in course_list %}
+                            <option name="course_2" value="{{ course.course_title }}">{{ course.course_title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row rows">
+                        <select name="course_3" id="" class="form-control">
+                            {% if student_course.course_3 != '' %}
+                            <option value="{{student_course.course_3}}">{{student_course.course_3}}</option>
+                            {% endif %}
+                            <option name="course_3" value="">Select Course Three</option>
+                            {% for course in course_list %}
+                            <option name="course_3" value="{{ course.course_title }}">{{ course.course_title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row rows">
+                        <select name="course_4" id="" class="form-control">
+                            {% if student_course.course_4 != '' %}
+                            <option value="{{student_course.course_4}}">{{student_course.course_4}}</option>
+                            {% endif %}
+                            <option name="course_4" value="">Select Course Four</option>
+                            {% for course in course_list %}
+                            <option name="course_4" value="{{ course.course_title }}">{{ course.course_title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-success">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page - delete</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <style>
+        .img img{
+            height: 60px;
+            width: 100px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bodycontainer">
+        <div class="first_content_header">
+            <div class="header">
+                <div class="img">
+                    <img src="../static/images/logo.jpeg" alt="image">
+                </div>
+                <div class="content">
+                    <div class="nav-bar">
+                        <a href="/admin-page">Home</a>
+                        <a href="/add-user">Register Lecturer</a>
+                        <a href="/view-user">View Lecturer</a>
+                        <a href="/add-student">Register Student</a>
+                        <a href="/view-student">View Student</a>
+                        <a href="/add-courses">Add Courses</a>
+                        <a href="/view-courses">View Courses</a>
+                        <a href="/admin-logout" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-content">
+            <div class="discription">
+                <h3>
+                    welcome "{{ current_user }}" 
+                </h3>
+            </div>
+        </div>
+        <div class="request-for-delete text-center">
+            <h2>Are you sure</h2>
+            <p>Are you sure you want to delete the selected Lecturer? All of the following objects and their related items will be deleted: <span class="text-primary">{{ student_atten.student }}</span></p>
+            <p>
+                <a href="/lec-delete/{{ lec.id }}" class="btn btn-danger">Yes i'am sure</a>
+                <a href="/view-user" class="btn btn-secondary">No, take me back</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

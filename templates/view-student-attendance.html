@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecturer Page</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <style>
+        .img img{
+            height: 60px;
+            width: 100px;
+            border-radius: 5px;
+        }
+
+        .table{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bodycontainer">
+        <div class="first_content_header">
+            <div class="header">
+                <div class="img">
+                    <img src="../static/images/logo.jpeg" alt="image">
+                </div>
+                <div class="content">
+                    <div class="nav-bar">
+                        <a href="/lecturer-page">Home</a>
+                        <a href="/level">Take Student Attendance</a>
+                        <a href="/view-student-attendance">View Student Attendance</a>
+                        <a href="/lecturer-logout" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="body-content">
+            <div class="discription">
+                <h3>
+                    student's attendance.. 
+                </h3>
+            </div>
+        </div>
+        <div class="table">
+            <table class="table caption-top">
+                <caption>List of Attendance</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Student Registraion Number</th>
+                    <!-- <th scope="col">Student Name</th> -->
+                    <th scope="col">Course Title</th>
+                    <th scope="col">First C.A</th>
+                    <th scope="col">Second C.A</th>
+                    <th scope="col">Exams</th>
+                    <th scope="col" class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for lec in lecturer %}
+                  <tr>
+                    <td>{{lec.student_regis}}</td>
+                    <!-- <td>{{stu.student_name}}</td> -->
+                    <td>{{lec.course_title}}</td>
+                    <td>{{lec.first_CA}}</td>
+                    <td>{{lec.second_CA}}</td>
+                    <td>{{lec.exams}}</td>
+                    <td class="text-center">
+                        <a href="/update/{{ lec.id }}" class="btn btn-primary">Edit</a>
+                        <a href="/request-for-delete/{{ lec.id }}" class="btn btn-danger">DEL</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecturer Page</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <style>
+        .img img{
+            height: 60px;
+            width: 100px;
+            border-radius: 5px;
+        }
+
+        .form{
+            width: 40%;
+        }
+        .form-section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-section .row{
+            margin-bottom: 20px;
+        }
+        .rows{
+            opacity: .7;
+        }
+    </style>
+</head>
+<body>
+    <div class="bodycontainer">
+        <div class="first_content_header">
+            <div class="header">
+                <div class="img">
+                    <img src="../static/images/logo.jpeg" alt="image">
+                </div>
+                <div class="content">
+                    <div class="nav-bar">
+                        <a href="/lecturer-page">Home</a>
+                        <a href="/level">Take Student Attendance</a>
+                        <a href="/view-student-attendance">View Student Attendance</a>
+                        <a href="/lecturer-logout" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-content">
+            <div class="discription">
+                <h3>
+                    take student attendance.. 
+                </h3>
+            </div>
+        </div>
+        <div class="form-section">
+            <div class="form">
+                {% if messages %}
+                <div class="alert alert-danger">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form action="/take-student-attendance" method="post">
+                    {% csrf_token %}
+                    <div class="row rows">
+                        <select name="student" id="" class="form-control">
+                            <option name="student" value="">Select Student</option>
+                            {% for stu in students %}
+                            {% if stu.student_level == 'HND 1' %}
+                            <option name="student" value="{{ stu.user }}">{{ stu.user }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row rows">
+                        <select name="course" id="" class="form-control">
+                            <option name="course" value="">Select Course</option>
+                            {% for c in course %}
+                            <option name="course" value="{{ c.course_title }}">{{ c.course_title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row rows">
+                        <select name="ca1" id="" class="form-control">
+                            <option name="ca1" value="">First C.A</option>
+                            <option name="ca1" value="Present">Present</option>
+                            <option name="ca1" value="Absent">Absent</option>
+                        </select>
+                    </div>
+                    <div class="row rows">
+                        <select name="ca2" id="" class="form-control">
+                            <option name="ca2" value="">Second C.A</option>
+                            <option name="ca2" value="Present">Present</option>
+                            <option name="ca2" value="Absent">Absent</option>
+                        </select>
+                    </div>
+                    <div class="row rows">
+                        <select name="exam" id="" class="form-control">
+                            <option name="exam" value="">Exam</option>
+                            <option name="exam" value="Present">Present</option>
+                            <option name="exam" value="Absent">Absent</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-success">Take Attendance</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

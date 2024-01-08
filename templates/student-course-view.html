@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Page</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <style>
+        .img img{
+            height: 60px;
+            width: 100px;
+            border-radius: 5px;
+        }
+        .table{
+            /* width: 70%; */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bodycontainer">
+        <div class="first_content_header">
+            <div class="header">
+                <div class="img">
+                    <img src="../static/images/logo.jpeg" alt="image">
+                </div>
+                <div class="content">
+                    <div class="nav-bar">
+                        <a href="/student-page">Home</a>
+                        <a href="/student-attendance-view">View My Attendance</a>
+                        <a href="/student-course-registration">Course Registration</a>
+                        <a href="/student-course-view">View courses</a>
+                        <a href="/student-logout" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-content">
+            <div class="discription">
+                <h3>
+                    courses.. 
+                </h3>
+            </div>
+        </div>
+        <div class="table">
+            <table class="table caption-top">
+                <caption>List of Courses</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Course Code</th>
+                    <th scope="col">Course Title</th>
+                    <th scope="col">Course Unit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for course in courses %}
+                {% for c in course_1 %}
+                {% if c.course_title == course.course_1 %}
+                  <tr>
+                    <td>{{ c.course_code }}</td>
+                    <td>{{ course.course_1 }}</td>
+                    <td>{{ c.unit }}</td>
+                  </tr>
+                {% elif c.course_title == course.course_2 %}
+                  <tr>
+                    <td>{{ c.course_code }}</td>
+                    <td>{{ course.course_2 }}</td>
+                    <td>{{ c.unit }}</td>
+                  </tr>
+                {% elif c.course_title == course.course_3 %}
+                  <tr>
+                    <td>{{ c.course_code }}</td>
+                    <td>{{ course.course_3 }}</td>
+                    <td>{{ c.unit }}</td>
+                  </tr>
+                {% elif c.course_title == course.course_4 %}
+                  <tr>
+                    <td>{{ c.course_code }}</td>
+                    <td>{{ course.course_4 }}</td>
+                    <td>{{ c.unit }}</td>
+                  </tr>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</body>
+</html>
